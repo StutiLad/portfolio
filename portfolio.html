@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stuti Lad - Full-Stack WordPress & Software Engineer Portfolio" />
+  <title>Stuti Lad | Full-Stack Developer & UI Specialist</title>
+
+  <!-- Modern Natural Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* MIDNIGHT VIOLET & FUCHSIA COLOR ENGINE */
+    :root[data-theme="dark"] {
+      --bg-color: #0a0e17;
+      --bg-gradient: radial-gradient(circle at 50% -10%, rgba(139, 92, 246, 0.18) 0%, rgba(236, 72, 153, 0.05) 45%, transparent 70%);
+      --card-bg: rgba(18, 24, 38, 0.75);
+      --card-hover: rgba(26, 35, 54, 0.9);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(139, 92, 246, 0.45);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #8b5cf6;
+      /* Violet 500 */
+      --accent-hover: #7c3aed;
+      /* Violet 600 */
+      --accent-secondary: #ec4899;
+      /* Fuchsia 500 */
+      --accent-soft: rgba(139, 92, 246, 0.12);
+      --accent-text: #ddd6fe;
+      --nav-bg: rgba(10, 14, 23, 0.85);
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    :root[data-theme="light"] {
+      --bg-color: #f8fafc;
+      --bg-gradient: radial-gradient(circle at 50% -10%, rgba(139, 92, 246, 0.12) 0%, transparent 65%);
+      --card-bg: #ffffff;
+      --card-hover: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --card-border-hover: rgba(139, 92, 246, 0.4);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #7c3aed;
+      /* Violet 600 */
+      --accent-hover: #6d28d9;
+      /* Violet 700 */
+      --accent-secondary: #db2777;
+      --accent-soft: rgba(139, 92, 246, 0.08);
+      --accent-text: #5b21b6;
+      --nav-bg: rgba(248, 250, 252, 0.85);
+      --shadow-color: rgba(0, 0, 0, 0.05);
+      --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* TYPOGRAPHY */
+    h1,
+    h2,
+    h3,
+    h4,
+    .brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    /* CONTAINER & LAYOUT */
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5.5rem 0;
+    }
+
+    /* REPEATABLE SCROLL REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* NAVIGATION */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      z-index: 1000;
+      border-bottom: 1px solid transparent;
+      box-shadow: none;
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .header.scrolled {
+      background-color: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      box-shadow: var(--header-shadow);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 4.5rem;
+    }
+
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.925rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* THEME SWITCH BUTTON */
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: scale(1.03);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding-top: 8rem;
+      padding-bottom: 4rem;
+    }
+
+    @media (max-width: 767px) {
+      .hero {
+        padding-top: 6.5rem;
+      }
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-soft);
+      border: 1px solid var(--card-border-hover);
+      color: var(--accent);
+      padding: 0.35rem 0.95rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .typing-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border-right: 2px solid var(--accent);
+      padding-right: 3px;
+      animation: blink 0.75s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: var(--accent);
+      }
+    }
+
+    .hero-bio {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+    }
+
+    .btn-secondary {
+      background-color: var(--card-bg);
+      color: var(--text-main);
+      border-color: var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--card-hover);
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 2.25rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40px;
+      height: 3.5px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 2px;
+    }
+
+    .sub-section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 2rem 0 1.25rem 0;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* CARDS */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.85rem;
+      padding: 1.75rem;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px -15px var(--shadow-color);
+    }
+
+    .card:hover {
+      background-color: var(--card-hover);
+      border-color: var(--card-border-hover);
+      transform: translateY(-4px);
+    }
+
+    /* ABOUT GRID */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1.25fr 0.75fr;
+      }
+    }
+
+    .about-text-content p {
+      color: var(--text-muted);
+      font-size: 1.025rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* SKILLS CHIPS */
+    .skills-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .skills-group h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .skills-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background-color: var(--accent-soft);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.4rem 0.85rem;
+      border-radius: 0.375rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* PROJECTS SHOWCASE */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-subtitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 0.925rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tech-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-text);
+      background-color: var(--accent-soft);
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    .project-link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s ease;
+    }
+
+    .project-link:hover {
+      color: var(--accent);
+    }
+
+    /* CENTERED TIMELINE DESIGN FOR WORK EXPERIENCE */
+    .timeline-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 0;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--card-border);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      width: 50%;
+      padding-right: 2.5rem;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-left: 50%;
+      padding-right: 0;
+      padding-left: 2.5rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 24px;
+      right: -8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-color);
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+      z-index: 2;
+      transition: transform 0.4s ease;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      right: auto;
+      left: -8px;
+    }
+
+    .timeline-item.active .timeline-dot {
+      transform: scale(1.3);
+      background: var(--accent);
+    }
+
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .timeline-company {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-date {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-desc ul {
+      margin-left: 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.925rem;
+    }
+
+    .timeline-desc li {
+      margin-bottom: 0.4rem;
+    }
+
+    @media (max-width: 767px) {
+      .timeline-container::before {
+        left: 20px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 3rem;
+        padding-right: 0;
+      }
+
+      .timeline-dot,
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: 12px;
+        right: auto;
+      }
+    }
+
+    /* CERTIFICATIONS GRID */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .cert-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cert-icon {
+      font-size: 1.4rem;
+      background: var(--accent-soft);
+      width: 46px;
+      height: 46px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cert-title {
+      font-size: 0.975rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .cert-issuer {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* EDUCATION SECTION */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .two-col-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .edu-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .degree-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .badge-cgpa {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-secondary);
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+    }
+
+    .institution {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-date {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* CONTACT SECTION */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.15rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      width: 100%;
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.75rem 0.9rem;
+      border-radius: 0.5rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .profile-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .profile-icon {
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header" id="navbar">
+    <div class="container nav">
+      <a href="#" class="brand">Stuti<span>.Lad</span></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+          <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero" id="hero">
+    <div class="container reveal">
+      <div class="hero-pill">
+        <span>●</span> Full-Stack WordPress & Web Developer
+      </div>
+      <h1 class="hero-title">
+        Engineering custom<br />
+        <span class="typing-text" id="typingText"></span>
+      </h1>
+      <p class="hero-bio">
+        Experienced Full-Stack Developer specialized in custom WordPress theme/plugin architecture, PHP backend
+        engineering, and AJAX-driven interfaces that balance performance with modular code.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects &rarr;</a>
+        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ABOUT ME SECTION -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title reveal">About Me</h2>
+
+      <div class="about-grid">
+        <div class="reveal about-text-content">
+          <p>
+            I am a Full-Stack WordPress Developer based in Ahmedabad, Gujarat, dedicated to engineering scalable web
+            applications and bespoke CMS architectures. My day-to-day focus centers around building modular PHP plugins,
+            developing optimized child themes, and crafting high-performance AJAX search and data filtering interfaces.
+          </p>
+          <p>
+            With a strong academic foundation in Information Technology and Adobe UX Design certification, I combine
+            software engineering standards with responsive front-end practices. I take pride in delivering maintainable
+            codebases that integrate smoothly with Advanced Custom Fields (ACF Pro), REST APIs, and core WordPress
+            functionality.
+          </p>
+          <p>
+            Beyond full-stack web development, my project experience spans computer vision systems built with
+            Python/Flask, IoT automated monitoring solutions, and biometric Java applications. I am passionate about
+            tackling technical challenges, learning modern frameworks, and crafting user-centric digital experiences.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem;">Technical Stack</h3>
+
+            <div class="skills-group">
+              <h4>CMS & WordPress Core</h4>
+              <div class="skills-flex">
+                <span class="skill-tag">Custom Plugin Architecture</span>
+                <span class="skill-tag">Custom Theme Engineering</span>
+                <span class="skill-tag">Advanced Custom Fields (ACF)</span>
+                <span class="skill-tag">LearnDash & MailPoet</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <h4>Backend & Database</h4>
+              <div class="skills-flex">
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">Laravel</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">REST APIs & AJAX</span>
+                <span class="skill-tag">Python & Java</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <h4>Frontend & Design</h4>
+              <div class="skills-flex">
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">React JS</span>
+                <span class="skill-tag">Bootstrap & HTML5/CSS3</span>
+                <span class="skill-tag">Adobe UX Certified</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PROJECTS SHOWCASE SECTION -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title reveal">Projects Showcase</h2>
+
+      <!-- OFFICE / CLIENT PROJECTS -->
+      <div class="sub-section-title reveal">🏢 Office & Enterprise Work</div>
+      <div class="projects-grid">
+
+        <!-- Latest Project 1: African Overland -->
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">African Overland</h3>
+            <div class="project-subtitle">Squad Technologies Pvt. Ltd.</div>
+            <p class="project-desc">
+              Spearheaded full-stack development, architecting a custom WordPress theme and tailored backend structure.
+              Designed an intuitive, mobile-first UI/UX to maximize engagement.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">PHP</span>
+              <span class="tech-pill">Custom WP Theme</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">MySQL</span>
+              <span class="tech-pill">HTML/CSS</span>
+            </div>
+          </div>
+          <a href="https://africanoverlandtours.com/" class="project-link" target="_blank">Enterprise Work &rarr;</a>
+        </div>
+
+        <!-- Latest Project 2: Enterprise WP Plugin Dev -->
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">Enterprise WP Plugin Architecture</h3>
+            <div class="project-subtitle">Squad Technologies Pvt. Ltd.</div>
+            <p class="project-desc">
+              Developed and updated bespoke in-house WordPress plugins without 3rd-party dependencies. Refactored legacy
+              plugin code to ensure compatibility with PHP 8.x and WP core updates.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">PHP 8.x</span>
+              <span class="tech-pill">WP REST API</span>
+              <span class="tech-pill">OOP</span>
+              <span class="tech-pill">MySQL</span>
+              <span class="tech-pill">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">BlueStone Frontend Portal</h3>
+            <div class="project-subtitle">Preyan Technosys Pvt. Ltd.</div>
+            <p class="project-desc">
+              Designed and implemented responsive front-end components and customer journey flows for the BlueStone web
+              platform using clean web standards.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">Bootstrap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">Feblio Textile Platform</h3>
+            <p class="project-subtitle">Preyan Technosys Pvt. Ltd.</p>
+            <p class="project-desc">
+              Developed a custom WordPress HTML template and inquiry system tailored for textile industry clients to
+              streamline fabric bookings.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">WordPress</span>
+              <span class="tech-pill">PHP</span>
+              <span class="tech-pill">Bootstrap</span>
+              <span class="tech-pill">UI/UX</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">Doctor’s Portal & Dashboard</h3>
+            <div class="project-subtitle">Infikey Technologies Pvt. Ltd.</div>
+            <p class="project-desc">
+              Engineered patient appointment registration modules and doctor dashboard logic for real-time scheduling
+              and online prescription issuance.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">Laravel</span>
+              <span class="tech-pill">PHP</span>
+              <span class="tech-pill">MySQL</span>
+              <span class="tech-pill">Bootstrap</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ACADEMIC PROJECTS -->
+      <div class="sub-section-title reveal" style="margin-top: 3.5rem;">🎓 Academic & Research Projects</div>
+      <div class="projects-grid">
+
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">My Ophthalmologist</h3>
+            <div class="project-subtitle">Medical OCT Disease Detection</div>
+            <p class="project-desc">
+              A multi-disease retina detection web platform using Python and Flask. Processes retinal OCT images to
+              analyze and identify conditions like Drusen, DME, and CNV.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">Flask</span>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">Bootstrap</span>
+            </div>
+          </div>
+          <a href="https://github.com/technical-squad/Multi-Eye-Disease-Detection" target="_blank"
+            rel="noopener noreferrer" class="project-link">View
+            GitHub Repo &rarr;</a>
+        </div>
+
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">Patient Monitoring System</h3>
+            <div class="project-subtitle">IoT Healthcare & Emergency Alert</div>
+            <p class="project-desc">
+              IoT system collecting pulse rate and body temperature via Arduino sensors, featuring live web telemetry
+              and automated email dispatch for abnormal vitals.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">Arduino</span>
+              <span class="tech-pill">C++</span>
+              <span class="tech-pill">HTML/CSS</span>
+              <span class="tech-pill">Email API</span>
+            </div>
+          </div>
+          <a href="https://github.com/technical-squad/Patient-Monitoring-System" target="_blank"
+            rel="noopener noreferrer" class="project-link">View
+            GitHub Repo &rarr;</a>
+        </div>
+
+        <div class="card project-card reveal">
+          <div>
+            <h3 class="project-title">Safeex Security Vault</h3>
+            <div class="project-subtitle">Biometric Android Application</div>
+            <p class="project-desc">
+              Android security application engineered in Java that protects sensitive account passwords behind biometric
+              fingerprint authentication.
+            </p>
+            <div class="project-tags">
+              <span class="tech-pill">Java</span>
+              <span class="tech-pill">Android Studio</span>
+              <span class="tech-pill">Biometrics</span>
+            </div>
+          </div>
+          <a href="https://github.com/technical-squad/Safeex-App" target="_blank" rel="noopener noreferrer"
+            class="project-link">View
+            GitHub Repo &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WORK EXPERIENCE TIMELINE SECTION -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title reveal">Work Experience</h2>
+
+      <div class="timeline-container">
+
+        <!-- Timeline Entry 1 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="card">
+            <h3 class="timeline-role">WordPress Developer</h3>
+            <div class="timeline-company">Squad Technologies Pvt. Ltd.</div>
+            <div class="timeline-date">Jan 2023 – Present</div>
+            <div class="timeline-desc">
+              <ul>
+                <li><strong>Enterprise Plugin Dev:</strong> Developed and maintained custom WordPress plugins using PHP
+                  8.x, OOP, and WP REST API without third-party dependencies.</li>
+                <li><strong>African Overland Platform:</strong> Architected complete theme and backend structure
+                  tailored to business specifications with a mobile-first UI.</li>
+                <li><strong>Legacy Refactoring & AJAX:</strong> Refactored legacy plugin code for PHP 8.x compatibility
+                  and implemented real-time AJAX search filters.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Entry 2 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="card">
+            <h3 class="timeline-role">Web Designing Intern</h3>
+            <div class="timeline-company">Preyan Technosys Pvt. Ltd.</div>
+            <div class="timeline-date">May 2022 – Jun 2022</div>
+            <div class="timeline-desc">
+              <ul>
+                <li><strong>Hotel Booking System:</strong> Created hotel website interfaces featuring real-time room
+                  availability search filters.</li>
+                <li><strong>Textile Company Design:</strong> Designed responsive customer contact interfaces for fabric
+                  inquiries.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Entry 3 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="card">
+            <h3 class="timeline-role">Laravel Intern</h3>
+            <div class="timeline-company">Infikey Technologies Pvt. Ltd.</div>
+            <div class="timeline-date">Jun 2021 – Jul 2021</div>
+            <div class="timeline-desc">
+              <ul>
+                <li><strong>Healthcare Portal:</strong> Built patient appointment registration workflows and doctor
+                  prescription management logic.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CERTIFICATIONS SECTION -->
+  <section id="certifications">
+    <div class="container">
+      <h2 class="section-title reveal">Certifications</h2>
+
+      <div class="cert-grid">
+
+        <div class="card cert-card reveal">
+          <div class="cert-icon">🎨</div>
+          <div>
+            <h3 class="cert-title">UX Design Foundation</h3>
+            <div class="cert-issuer">Adobe UX Foundation Learning Journey</div>
+          </div>
+        </div>
+
+        <div class="card cert-card reveal">
+          <div class="cert-icon">🏆</div>
+          <div>
+            <h3 class="cert-title">Flipkart GRID 4.0</h3>
+            <div class="cert-issuer">Hackathon Participant</div>
+          </div>
+        </div>
+
+        <div class="card cert-card reveal">
+          <div class="cert-icon">⚙️</div>
+          <div>
+            <h3 class="cert-title">Build a Website Using WordPress</h3>
+            <div class="cert-issuer">Coursera Authorized</div>
+          </div>
+        </div>
+
+        <div class="card cert-card reveal">
+          <div class="cert-icon">🌐</div>
+          <div>
+            <h3 class="cert-title">HTML, JavaScript, & Bootstrap</h3>
+            <div class="cert-issuer">Udemy</div>
+          </div>
+        </div>
+
+        <div class="card cert-card reveal">
+          <div class="cert-icon">💻</div>
+          <div>
+            <h3 class="cert-title">HTML, CSS, & JavaScript</h3>
+            <div class="cert-issuer">Coursera Authorized</div>
+          </div>
+        </div>
+
+        <div class="card cert-card reveal">
+          <div class="cert-icon">📈</div>
+          <div>
+            <h3 class="cert-title">Digital Marketing</h3>
+            <div class="cert-issuer">Google</div>
+          </div>
+        </div>
+
+        <div class="card cert-card reveal">
+          <div class="cert-icon">📊</div>
+          <div>
+            <h3 class="cert-title">Data Analytics on AWS</h3>
+            <div class="cert-issuer">Coursera Authorized</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. EDUCATION SECTION -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title reveal">Education Background</h2>
+
+      <div class="two-col-grid">
+
+        <!-- Degree 1 -->
+        <div class="card reveal">
+          <div class="edu-card-header">
+            <h3 class="degree-title">B.Tech in Information Technology</h3>
+            <span class="badge-cgpa">CGPA: 8.84</span>
+          </div>
+          <div class="institution">Charotar University of Science and Technology, Gujarat</div>
+          <div class="edu-date">Sep 2019 – Oct 2023</div>
+          <p style="color: var(--text-muted); font-size: 0.925rem;">
+            Focused on computer science fundamentals, database design, software engineering lifecycle, and web framework
+            architecture.
+          </p>
+        </div>
+
+        <!-- Degree 2 -->
+        <div class="card reveal">
+          <div class="edu-card-header">
+            <h3 class="degree-title">GHSEB & GSSEB Higher Secondary</h3>
+            <span class="badge-cgpa">81% / 86% Score</span>
+          </div>
+          <div class="institution">A. B. School, Chikhli, Navsari, Gujarat</div>
+          <div class="edu-date">2016 – 2019</div>
+          <p style="color: var(--text-muted); font-size: 0.925rem;">
+            Completed higher secondary education in science and mathematics with academic distinction.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title reveal">Get In Touch</h2>
+
+      <div class="contact-grid">
+        <form class="card reveal" id="contactForm"
+          onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="your.email@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" rows="4" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+
+        <div class="profile-list reveal">
+          <a href="mailto:ladstuti18@gmail.com" class="card profile-card">
+            <div class="profile-icon">✉️</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Email</div>
+              <div style="color: var(--text-muted); font-size: 0.85rem;">ladstuti18@gmail.com</div>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/stuti-lad-18977a1b0" target="_blank" rel="noopener noreferrer"
+            class="card profile-card">
+            <div class="profile-icon">🔗</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">LinkedIn</div>
+              <div style="color: var(--text-muted); font-size: 0.85rem;">in/stuti-lad-18977a1b0</div>
+            </div>
+          </a>
+
+          <a href="https://github.com/StutiLad" target="_blank" rel="noopener noreferrer" class="card profile-card">
+            <div class="profile-icon">💻</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">GitHub</div>
+              <div style="color: var(--text-muted); font-size: 0.85rem;">github.com/StutiLad</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Stuti Lad. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. LIGHT & DARK THEME TOGGLE
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+    const htmlEl = document.documentElement;
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      htmlEl.setAttribute('data-theme', newTheme);
+      themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+      themeLabel.textContent = newTheme === 'dark' ? 'Dark' : 'Light';
+    });
+
+    // 2. HEADER BORDER & SHADOW ON SCROLL
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // 3. REPEATABLE INTERSECTION OBSERVER FOR SCROLL UP / DOWN ANIMATIONS
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -20px 0px',
+      threshold: 0.05
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 4. TYPING HEADLINE EFFECT
+    const roles = ["WordPress Plugins.", "Custom Themes.", "AJAX Backends.", "Web Architectures."];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.getElementById("typingText");
+
+    function typeEffect() {
+      const currentRole = roles[roleIndex];
+      typingElement.textContent = isDeleting
+        ? currentRole.substring(0, charIndex - 1)
+        : currentRole.substring(0, charIndex + 1);
+
+      charIndex += isDeleting ? -1 : 1;
+      let speed = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        speed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        speed = 350;
+      }
+      setTimeout(typeEffect, speed);
+    }
+
+    document.addEventListener("DOMContentLoaded", typeEffect);
+  </script>
+</body>
+
+</html>
